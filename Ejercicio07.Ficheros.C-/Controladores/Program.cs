@@ -4,9 +4,14 @@ namespace Ejercicio07.Ficheros.C_.Controladores
 {
     class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// Metodo por el Cual la Aplicacion se lanzara.
+        /// <author>DMN - 27/03/2024</author>
+        /// </summary>
+        /// <param name="args"></param>
+        public static void Main(string[] args)
         {
-
+            
             MenuInterfaz me = new MenuImplementacion();
 
             OperativaInterfaz op = new OperativaImplementacion();
@@ -19,38 +24,46 @@ namespace Ejercicio07.Ficheros.C_.Controladores
             {
                 int seleccionFicheros = me.menuArchivos();
 
-                switch (seleccionFicheros)
-                {
+                try { 
 
-                    case 0:
-                        Console.WriteLine("SE CERRARA LA APLICACION");
-                        cerrarAplicacion = true;
-                        break;
+                    switch (seleccionFicheros)
+                    {
 
-                    case 1:
-                        rutaArchivo = "C:\\Users\\david\\Desktop\\Empleado.txt";
-                        op.archivoAcciones(rutaArchivo);
+                        case 0:
+                            Console.WriteLine("SE CERRARA LA APLICACION");
+                            cerrarAplicacion = true;
+                            break;
 
-                        break;
+                        case 1:
+                            rutaArchivo = "C:\\Users\\david\\Desktop\\Empleado.txt";
+                            op.archivoAcciones(rutaArchivo);
 
-                    case 2:
-                        rutaArchivo = "C:\\Users\\david\\Desktop\\Gerencia.txt";
-                        op.archivoAcciones(rutaArchivo);
-                        break;
+                            break;
 
-                    case 3:
-                        rutaArchivo = "C:\\Users\\david\\Desktop\\Apuntes.txt";
-                        op.archivoAcciones(rutaArchivo);
-                        break;
+                        case 2:
+                            rutaArchivo = "C:\\Users\\david\\Desktop\\Gerencia.txt";
+                            op.archivoAcciones(rutaArchivo);
+                            break;
 
-                    default:
-                        Console.WriteLine("SELECCION NO VALIDA");
-                        break;
+                        case 3:
+                            rutaArchivo = "C:\\Users\\david\\Desktop\\Apuntes.txt";
+                            op.archivoAcciones(rutaArchivo);
+                            break;
+
+                        default:
+                            Console.WriteLine("SELECCION NO VALIDA");
+                            break;
 
 
 
+                    }
                 }
 
+                catch(Exception ex)
+                {
+                    Console.WriteLine("[INFO] -> Se ha un Error. Intentelo mas Tarde: " + ex.Message + " " + 
+                        ex.ToString);                   
+                }
 
             }
 

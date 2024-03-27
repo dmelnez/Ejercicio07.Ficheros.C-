@@ -12,6 +12,7 @@ namespace Ejercicio07.Ficheros.C_.Servicios
 
         public void archivoAcciones(string rutaArchivo)
         {
+
             int seleccionModificacion = me.menuAcciones();
 
             bool cerrarAplicacions = false;
@@ -26,14 +27,39 @@ namespace Ejercicio07.Ficheros.C_.Servicios
                     break;
 
                     case 1:
+
+                        // Control de Excepcion de IOException. Con la Finalidad de Evitar, que el error llegue al cliente
+                        try
+                        { 
                         // Seleccion de Modificacion en un Archivo
                         modificacionArchivos(rutaArchivo);
-                    break;
+                        }
+
+                        catch (IOException ex)
+                        {
+                            Console.WriteLine("[INFO] -> Se ha un Error. Intentelo mas Tarde: " + ex.Message + " " +
+                                ex.ToString);
+                        }
+
+                        break;
 
                     case 2:
-                        // Seleccion de Inserccion en la Posicion especifica en un Archivo
-                        inserccionArchivo(rutaArchivo);
-                    break;
+
+
+                        // Control de Excepcion de IOException. Con la Finalidad de Evitar, que el error llegue al cliente
+                        try
+                        {
+                            // Seleccion de Inserccion en la Posicion especifica en un Archivo
+                            inserccionArchivo(rutaArchivo);
+
+                        }
+
+                        catch (IOException ex)
+                        {
+                            Console.WriteLine("[INFO] -> Se ha un Error. Intentelo mas Tarde: " + ex.Message + " " +
+                                ex.ToString);
+                        }
+                        break;
 
 
                     default:
@@ -51,7 +77,12 @@ namespace Ejercicio07.Ficheros.C_.Servicios
         }
 
 
-
+        /// <summary>
+        /// Metodo encargado, de mostrar al usuario el contenido del Archivo seleccionado. 
+        /// Solicitara el numero de la linea a Modificar, y contenido que contendra una vez Modificado.
+        /// </summary>
+        /// <author>DMN - 27/03/2024</author>
+        /// <param name="rutaArchivo"></param>
         private void modificacionArchivos(string rutaArchivo)
         {
             // Division del Archivo. 
@@ -67,10 +98,10 @@ namespace Ejercicio07.Ficheros.C_.Servicios
             }
 
             Console.WriteLine("Linea Modificada: ");
-            int numeroLinea = Convert.ToInt32(Console.WriteLine());
+            int numeroLinea = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Texto a Sustituir");
-            string contenidoSustido = Console.WriteLine();
+            string contenidoSustido = Console.ReadLine();
 
             archivoDivido[numeroLinea] = contenidoSustido;
 
@@ -80,7 +111,13 @@ namespace Ejercicio07.Ficheros.C_.Servicios
         }
 
 
-
+        /// <summary>
+        /// Metodo encargado, de mostrar al usuario el contenido del Archivo seleccionado. 
+        /// Solicitara el numero de la linea a Modificar, y contenido que contendra una vez Modificado.
+        /// Solicitara una Posicion Especifica de la Linea.
+        /// </summary>
+        /// <author>DMN - 27/03/2024</author>
+        /// <param name="rutaArchivo"></param>
         private void inserccionArchivo(string rutaArchivo)
         {
             string[] archivoDivido = File.ReadAllLines(rutaArchivo);
@@ -93,17 +130,15 @@ namespace Ejercicio07.Ficheros.C_.Servicios
             }
 
             Console.WriteLine("Linea Modificada: ");
-            int numeroLinea = Convert.ToInt32(Console.WriteLine());
+            int numeroLinea = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Posicion de la Linea: ");
-            int posicionLinea = Convert.ToInt32(Console.WriteLine());
+            int posicionLinea = Convert.ToInt32(Console.ReadLine());
 
              Console.WriteLine("Texto a Sustituir");
-            string contenidoInsertado = Console.WriteLine();
+            string contenidoInsertado = Console.ReadLine();
 
-            string aux;
-
-            
+            string aux = "";
 
             archivoDivido[numeroLinea] = aux;
 
